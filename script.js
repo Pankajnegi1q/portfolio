@@ -208,3 +208,61 @@ if (parallaxLayers.length > 0) {
         });
     });
 }
+
+/* --------------------------------------------------
+   PORTFOLIO CONTENT MANAGER
+   The admin page saves content in the same browser origin.
+-------------------------------------------------- */
+(async function renderPortfolioContent() {
+    if (!window.PortfolioData) return;
+    const content = PortfolioData.loadContent();
+    const get = (path) => path.split(".").reduce((value, key) => value && value[key], content);
+
+    document.querySelectorAll("[data-content]").forEach((element) => {
+        const value = get(element.dataset.content);
+        if (value !== undefined) element.textContent = value;
+    });
+    document.querySelectorAll("[data-contact-link]").forEach((element) => {
+        const type = element.dataset.contactLink;
+        const value = content.contact[type];
+        if (!value) return;
+        element.href = type === "email" ? `mailto:${value}` : value;
+        if (type === "email" && element.closest(".email-text")) element.textContent = value;
+    });
+
+    content.stats.forEach((stat, index) => {
+        const value = document.querySelector(`[data-stat-value="${index}"]`);
+        const label = document.querySelector(`[data-stat-label="${index}"]`);
+        if (value) value.textContent = stat.value;
+        if (label) label.textContent = stat.label;
+    });
+
+    const aboutVideo = document.querySelector("[data-video='about']");
+    if (aboutVideo) aboutVideo.src = await PortfolioData.resolveMediaSource(content.about.video);
+
+    const recentGrid = document.querySelector("#recent-grid");
+    const slider = document.querySelector("#reel-slider");
+    const recentReels = content.reels.slice(0, 3);
+    const featuredReels = content.reels.filter((reel) => reel.featured);
+    const videoMarkup = (reel, sliderMode = false) => {
+        const classes = sliderMode ? "" : "class=\"portfolio-reel-video\"";
+        return `<video ${classes} data-reel-id="${reel.id}" src="${reel.src}" muted playsinline loop preload="metadata" aria-label="${reel.title}"></video>`;
+    };
+
+    if (recentGrid) {
+        recentGrid.innerHTML = recentReels.map((reel) => `<div class="recent-item" data-reel-card="${reel.id}">${videoMarkup(reel)}</div>`).join("");
+    }
+    if (slider) {
+        slider.innerHTML = featuredReels.map((reel) => videoMarkup(reel, true)).join("");
+    }
+
+    const mediaVideos = [...document.querySelectorAll("[data-reel-id]")];
+    await Promise.all(mediaVideos.map(async (video) => {
+        const reel = content.reels.find((item) => item.id === video.dataset.reelId);
+        if (reel) video.src = await PortfolioData.resolveMediaSource(reel.src);
+    }));
+    mediaVideos.forEach((video) => {
+        video.addEventListener("mouseenter", () => video.play().catch(() => {}));
+        video.addEventListener("mouseleave", () => { video.pause(); video.currentTime = 0; });
+    });
+})();

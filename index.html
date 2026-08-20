@@ -28,6 +28,7 @@
       <a href="#about">About</a>
       <a href="#projects">Work</a>
       <a href="#contact">Contact</a>
+      <a href="admin.html">Admin</a>
     </div>
 
     <!-- Mobile Menu Toggle -->
@@ -51,13 +52,13 @@
 
   <section class="hero">
 
-    <h1 class="script-title">Pankaj'S</h1>
+    <h1 class="script-title" data-content="hero.name">Pankaj'S</h1>
 
-    <h1 class="main-title">PORTFOLIO</h1>
+    <h1 class="main-title" data-content="hero.title">PORTFOLIO</h1>
 
-    <h2 class="subtitle">Unleash Your Viral Potential With Pro Video Editing</h2>
+    <h2 class="subtitle" data-content="hero.subtitle">Unleash Your Viral Potential With Pro Video Editing</h2>
 
-    <p class="desc">
+    <p class="desc" data-content="hero.description">
       I transform raw footage into captivating content that gets seen, shared, and loved.
       Take your channel to the next level with our expert editing magic.
     </p>
@@ -68,13 +69,13 @@
 
   <!-- ABOUT -->
   <section id="about" class="about reveal">
-    <h2>About Me</h2>
+    <h2 data-content="about.heading">About Me</h2>
 
     <div class="about-content">
 
       <!-- About Intro Video Card (Instagram Reel Style) -->
       <div class="about-video-card">
-        <video class="about-video" src="assets/PankuVID.mp4" muted loop playsinline></video>
+        <video class="about-video" data-video="about" src="assets/PankuVID.mp4" muted loop playsinline></video>
         <div class="video-overlay">
           <div class="play-icon">▶</div>
         </div>
@@ -82,7 +83,7 @@
 
       <!-- About Text -->
       <div class="about-text">
-        <p>
+        <p data-content="about.description">
           I specialize in turning raw footage into compelling short stories — focusing on pacing, transitions,
           color grading and emotional beats. I produce social-ready edits and cinematic shorts that help
           creators & brands stand out.
@@ -90,16 +91,16 @@
 
         <div class="about-stats">
           <div class="stat-item">
-            <h3>10+</h3>
-            <p>Projects Completed</p>
+            <h3 data-stat-value="0">10+</h3>
+            <p data-stat-label="0">Projects Completed</p>
           </div>
           <div class="stat-item">
-            <h3>5+</h3>
-            <p>Happy Clients</p>
+            <h3 data-stat-value="1">5+</h3>
+            <p data-stat-label="1">Happy Clients</p>
           </div>
           <div class="stat-item">
-            <h3>10k</h3>
-            <p>Total Views</p>
+            <h3 data-stat-value="2">10k</h3>
+            <p data-stat-label="2">Total Views</p>
           </div>
         </div>
       </div>
@@ -110,28 +111,14 @@
 
   <section id="projects" class="recent-edits-section">
 
-    <h2 class="recent-title">My Recent <span>Edits</span></h2>
+    <h2 class="recent-title" data-content="projects.heading">My Recent Edits</h2>
 
-    <p class="recent-subtext">
+    <p class="recent-subtext" data-content="projects.description">
       We imagine and build experiences, products and businesses that disrupt the status quo,
       win hearts and realize the future. Explore how we work.
     </p>
 
-    <div class="recent-grid">
-
-      <div class="recent-item">
-        <video src="assets/PankuVID.mp4" muted loop playsinline></video>
-      </div>
-
-      <div class="recent-item">
-        <video src="assets/AboutMEPnak.mp4" muted loop playsinline></video>
-      </div>
-
-      <div class="recent-item">
-        <video src="assets/client.mp4" muted loop playsinline></video>
-      </div>
-
-    </div>
+    <div class="recent-grid" id="recent-grid"></div>
 
   </section>
 
@@ -139,7 +126,7 @@
   <section class="reel-section reveal" aria-label="Reel slider">
     <h3 style="text-align:center; color:#ffd966; margin-bottom:16px;">Featured Reels</h3>
 
-    <div class="slider" role="list">
+    <div class="slider" id="reel-slider" role="list">
 
       <video src="assets/PankuVID.mp4" playsinline loop preload="metadata" role="listitem" aria-label="Reel 1"></video>
       <video src="assets/Ajat.mp4" playsinline loop preload="metadata" role="listitem" aria-label="Reel 6"></video>
@@ -160,15 +147,15 @@
   <!-- CONTACT / FOOTER -->
   <footer id="contact" class="contact ">
     <div class="contact-container">
-      <h3>Let's Create Something Cinematic</h3>
-      <p class="contact-desc">
+      <h3 data-content="contact.heading">Let's Create Something Cinematic</h3>
+      <p class="contact-desc" data-content="contact.description">
         Reels, promos, travel edits, or brand videos — I handle editing, color grading, and final delivery.
         Let's bring your vision to life!
       </p>
 
       <!-- Social Links -->
       <div class="social-links">
-        <a href="https://www.instagram.com/wssup_panku/" target="_blank" class="social-btn instagram">
+        <a href="https://www.instagram.com/wssup_panku/" data-contact-link="instagram" target="_blank" class="social-btn instagram">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
             <path
               d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
@@ -176,7 +163,7 @@
           Instagram
         </a>
 
-        <a href="mailto:panki23@gmail.com" class="social-btn gmail">
+        <a href="mailto:panki23@gmail.com" data-contact-link="email" class="social-btn gmail">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
             <path
               d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
@@ -188,19 +175,20 @@
       <!-- Email Display -->
       <p class="email-text">
         <strong>Email:</strong>
-        <a href="mailto:panki23@gmail.com">Pankajnegi1q@gmail.com</a>
+        <a href="mailto:panki23@gmail.com" data-contact-link="email">Pankajnegi1q@gmail.com</a>
       </p>
 
       <!-- Footer Bottom -->
       <div class="footer-bottom">
-        <p>© 2025 Pankaj (@wassup_panku) — Cinematic Video Editor</p>
-        <p class="footer-tagline">Transforming raw footage into viral content</p>
+        <p data-content="contact.footer">© 2025 Pankaj (@wassup_panku) — Cinematic Video Editor</p>
+        <p class="footer-tagline" data-content="contact.tagline">Transforming raw footage into viral content</p>
       </div>
     </div>
   </footer>
 
 
   <!-- Main script (created earlier as script.js) -->
+  <script src="portfolio-data.js" defer></script>
   <script src="script.js" defer></script>
 </body>
 

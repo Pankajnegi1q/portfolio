@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio Admin — Pankaj</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <main class="admin-shell">
+    <header class="admin-header">
+      <div>
+        <p class="eyebrow">Portfolio control room</p>
+        <h1>Manage your work<span>.</span></h1>
+        <p class="header-copy">Update the content your clients see, without touching code.</p>
+      </div>
+      <a class="view-site" href="index.html" target="_blank">View portfolio ↗</a>
+    </header>
+
+    <div class="storage-note"><strong>Local workspace:</strong> Changes and uploaded videos are saved in this browser on this Replit origin. Use the export button below to keep a backup before switching devices.</div>
+
+    <div id="notice" class="notice" role="status"></div>
+
+    <section class="admin-card">
+      <div class="section-heading"><div><p class="eyebrow">01 / Brand story</p><h2>Hero & about</h2></div><button class="save-button" data-save="brand">Save changes</button></div>
+      <form id="brand-form" class="form-grid">
+        <label>Signature <input name="heroName" required></label>
+        <label>Headline <input name="heroTitle" required></label>
+        <label class="wide">Subtitle <input name="heroSubtitle" required></label>
+        <label class="wide">Intro paragraph <textarea name="heroDescription" rows="3" required></textarea></label>
+        <label>About heading <input name="aboutHeading" required></label>
+        <label>About video path <input name="aboutVideo" placeholder="assets/PankuVID.mp4"></label>
+        <label class="wide">About paragraph <textarea name="aboutDescription" rows="4" required></textarea></label>
+      </form>
+    </section>
+
+    <section class="admin-card">
+      <div class="section-heading"><div><p class="eyebrow">02 / Proof points</p><h2>Stats</h2></div><button class="save-button" data-save="stats">Save stats</button></div>
+      <form id="stats-form" class="stats-form"></form>
+    </section>
+
+    <section class="admin-card">
+      <div class="section-heading"><div><p class="eyebrow">03 / Your reel library</p><h2>Reels <span id="reel-count"></span></h2></div><button class="secondary-button" id="reset-reels" type="button">Restore defaults</button></div>
+      <form id="reel-form" class="reel-form">
+        <input type="hidden" name="id">
+        <label>Reel title <input name="title" required placeholder="e.g. Brand launch edit"></label>
+        <label>Category <input name="category" required placeholder="Client work"></label>
+        <label class="file-field">Upload video <input type="file" name="file" accept="video/*"><small>Or use a hosted / existing path below.</small></label>
+        <label>Video path / URL <input name="src" required placeholder="assets/my-reel.mp4"></label>
+        <label class="checkbox-label"><input type="checkbox" name="featured"> Show in featured reels</label>
+        <div class="form-actions"><button class="save-button" id="reel-submit">Add reel</button><button class="ghost-button" id="reel-cancel" type="button">Cancel</button></div>
+      </form>
+      <div id="reel-list" class="reel-list"></div>
+    </section>
+
+    <section class="admin-card">
+      <div class="section-heading"><div><p class="eyebrow">04 / Make contact easy</p><h2>Contact & footer</h2></div><button class="save-button" data-save="contact">Save contact</button></div>
+      <form id="contact-form" class="form-grid">
+        <label class="wide">Contact heading <input name="heading" required></label>
+        <label class="wide">Description <textarea name="description" rows="3" required></textarea></label>
+        <label>Instagram URL <input name="instagram" type="url"></label>
+        <label>Email <input name="email" type="email" required></label>
+        <label class="wide">Footer copyright <input name="footer"></label>
+        <label class="wide">Footer tagline <input name="tagline"></label>
+      </form>
+      <div class="backup-actions"><button class="secondary-button" id="export-content">Export backup</button><button class="ghost-button" id="reset-content">Reset all content</button></div>
+    </section>
+  </main>
+  <script src="portfolio-data.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
